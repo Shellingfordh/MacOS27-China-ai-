@@ -1,6 +1,13 @@
+安排！已经把 **DeepSeek（深度求索）** 完美融合进去了。既然它现在“最红最专”，确实得在防线里给它安排上最高规格的待遇。
+
+这里是更新后的完整 `README.md` 内容，直接复制即可：
+
+---
+
+```markdown
 # macOS-Anti-Censorship-Shield
 
-一个用于在 macOS 27+ (Golden Gate) 系统中彻底切断、阻断国行特供版 Apple Intelligence 资格审查（`eligibilityd`）以及国内主流大模型/云服务（阿里通义千问、百度文心一言、腾讯混元、字节豆包）底层网络连接与行为追踪的硬核隐私加固指南。
+一个用于在 macOS 15+ / macOS 27+ (Golden Gate) 系统中彻底切断、阻断国行特供版 Apple Intelligence 资格审查（`eligibilityd`）以及国内主流大模型/云服务（阿里通义千问、DeepSeek、百度文心一言、腾讯混元、字节豆包）底层网络连接与行为追踪的硬核隐私加固指南。
 
 ---
 
@@ -27,6 +34,9 @@
 ```text
 # ======= 核心进程阻断 =======
 PROCESS-NAME,eligibilityd,REJECT
+
+# ======= DeepSeek (深度求索) =======
+DOMAIN-KEYWORD,deepseek,REJECT
 
 # ======= 阿里系 (Ali / 通义千问) =======
 DOMAIN-KEYWORD,qwen,REJECT
@@ -57,7 +67,7 @@ DOMAIN-KEYWORD,bytedance,REJECT
 
 ### 方案 B：内核级物理防御 - macOS PF 防火墙【系统升级后需重建】
 
-直接封锁四大巨头最核心的物理 IP 广播网段。即使它们更换全新 AI 域名，只要服务器在这些机房，流量就会在出网卡瞬间被丢弃（Drop）。
+直接封锁核心大模型及云厂商最底层的物理 IP 广播网段。即使它们更换全新 AI 域名，只要服务器在这些机房，流量就会在出网卡瞬间被丢弃（Drop）。
 
 1. 创建独立的规则配置文件：
 
@@ -71,21 +81,29 @@ sudo nano /etc/pf.anchors/com.privacy.blockai
 ```text
 block drop out proto tcp to eligibility.apple.com
 block drop out proto tcp to eligibilityd.apple.com
-# 阿里云 & 阿里 AI (包含 DashScope)
+
+# 0. DeepSeek 专属核心机房网段封锁
+block drop out proto tcp to 103.197.68.0/22
+block drop out proto tcp to 45.45.148.0/22
+
+# 1. 阿里云 & 阿里 AI (包含 DashScope)
 block drop out proto tcp to 140.205.0.0/16
 block drop out proto tcp to 106.11.0.0/16
 block drop out proto tcp to 47.92.0.0/14
 block drop out proto tcp to 8.210.0.0/16
-# 百度云 & 文心一言
+
+# 2. 百度云 & 文心一言
 block drop out proto tcp to 111.206.0.0/16
 block drop out proto tcp to 180.76.0.0/16
 block drop out proto tcp to 220.181.0.0/16
-# 腾讯云 & 混元
+
+# 3. 腾讯云 & 混元
 block drop out proto tcp to 119.28.0.0/16
 block drop out proto tcp to 150.109.0.0/16
 block drop out proto tcp to 129.211.0.0/16
 block drop out proto tcp to 43.138.0.0/16
-# 火山引擎 & 字节豆包
+
+# 4. 火山引擎 & 字节豆包
 block drop out proto tcp to 113.108.0.0/16
 block drop out proto tcp to 222.126.0.0/16
 
@@ -107,7 +125,7 @@ sudo pfctl -E -f /etc/pf.conf
 
 ### 方案 C：本地流向重定向 - `/etc/hosts`【系统升级后需重建】
 
-通过本地 Hosts 将核心 API 直接拦截路由到本地零地址。
+通过本地 Hosts 将核心 AI 接口直接拦截路由到本地零地址。
 
 在终端中执行以下命令：
 
@@ -117,6 +135,8 @@ sudo bash -c 'cat >> /etc/hosts <<EOF
 # [Privacy] Block All Domestic AI & Cloud Gateways
 127.0.0.1 eligibility.apple.com
 127.0.0.1 eligibilityd.apple.com
+127.0.0.1 api.deepseek.com
+127.0.0.1 deepseek.com
 127.0.0.1 qwen.alicdn.com
 127.0.0.1 dashscope.aliyuncs.com
 127.0.0.1 api.vllm.ai
@@ -181,7 +201,7 @@ defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 配置完成后，建议通过以下命令检查防护状态：
 
 1. **检查防火墙状态**：运行 `sudo pfctl -s info` 确认防火墙为 enabled。
-2. **检查域名拦截**：运行 `ping qwen.alicdn.com` 确认返回的 IP 为 `127.0.0.1`。
+2. **检查域名拦截**：运行 `ping api.deepseek.com` 或 `ping qwen.alicdn.com` 确认返回的 IP 为 `127.0.0.1`。
 3. **确认最高安全法案**：运行 `csrutil status`，**日常使用务必确保系统完整性保护 (SIP) 为 `enabled` 状态**，以防恶意组件非法提权。
 
 ```
