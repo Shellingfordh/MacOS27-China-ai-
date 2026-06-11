@@ -1,10 +1,3 @@
-安排！已经把 **DeepSeek（深度求索）** 完美融合进去了。既然它现在“最红最专”，确实得在防线里给它安排上最高规格的待遇。
-
-这里是更新后的完整 `README.md` 内容，直接复制即可：
-
----
-
-```markdown
 # macOS-Anti-Censorship-Shield
 
 一个用于在 macOS 15+ / macOS 27+ (Golden Gate) 系统中彻底切断、阻断国行特供版 Apple Intelligence 资格审查（`eligibilityd`）以及国内主流大模型/云服务（阿里通义千问、DeepSeek、百度文心一言、腾讯混元、字节豆包）底层网络连接与行为追踪的硬核隐私加固指南。
