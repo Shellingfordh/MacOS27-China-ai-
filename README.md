@@ -1,3 +1,6 @@
+---
+
+```markdown
 # macOS-Anti-Censorship-Shield
 
 一个用于在 macOS 15+ / macOS 27+ (Golden Gate) 系统中彻底切断、阻断国行特供版 Apple Intelligence 资格审查（`eligibilityd`）以及国内主流大模型/云服务（阿里通义千问、百度文心一言、腾讯混元、字节豆包）底层网络连接与行为追踪的硬核隐私加固指南。
@@ -50,3 +53,140 @@ DOMAIN-KEYWORD,qq.com,REJECT
 DOMAIN-KEYWORD,doubao,REJECT
 DOMAIN-KEYWORD,volces,REJECT
 DOMAIN-KEYWORD,bytedance,REJECT
+
+```
+
+---
+
+### 方案 B：内核级物理防御 - macOS PF 防火墙【系统升级后需重建】
+
+直接封锁四大巨头最核心的物理 IP 广播网段。即使它们更换全新 AI 域名，只要服务器在这些机房，流量就会在出网卡瞬间被丢弃（Drop）。
+
+1. 创建独立的规则配置文件：
+
+```bash
+sudo nano /etc/pf.anchors/com.privacy.blockai
+
+```
+
+2. 粘贴以下内容并保存（`Ctrl+O` 回车，`Ctrl+X` 退出）：
+
+```text
+block drop out proto tcp to eligibility.apple.com
+block drop out proto tcp to eligibilityd.apple.com
+# 阿里云 & 阿里 AI (包含 DashScope)
+block drop out proto tcp to 140.205.0.0/16
+block drop out proto tcp to 106.11.0.0/16
+block drop out proto tcp to 47.92.0.0/14
+block drop out proto tcp to 8.210.0.0/16
+# 百度云 & 文心一言
+block drop out proto tcp to 111.206.0.0/16
+block drop out proto tcp to 180.76.0.0/16
+block drop out proto tcp to 220.181.0.0/16
+# 腾讯云 & 混元
+block drop out proto tcp to 119.28.0.0/16
+block drop out proto tcp to 150.109.0.0/16
+block drop out proto tcp to 129.211.0.0/16
+block drop out proto tcp to 43.138.0.0/16
+# 火山引擎 & 字节豆包
+block drop out proto tcp to 113.108.0.0/16
+block drop out proto tcp to 222.126.0.0/16
+
+```
+
+3. 修改主配置文件 `sudo nano /etc/pf.conf`：
+* 在 `rdr-anchor "com.apple/*"` 下方添加：`anchor "com.privacy.blockai"`
+* 在文件最末尾添加：`load anchor "com.privacy.blockai" from "/etc/pf.anchors/com.privacy.blockai"`
+
+
+4. 强制启动防火墙并应用规则：
+
+```bash
+sudo pfctl -E -f /etc/pf.conf
+
+```
+
+---
+
+### 方案 C：本地流向重定向 - `/etc/hosts`【系统升级后需重建】
+
+通过本地 Hosts 将核心 API 直接拦截路由到本地零地址。
+
+在终端中执行以下命令：
+
+```bash
+sudo bash -c 'cat >> /etc/hosts <<EOF
+
+# [Privacy] Block All Domestic AI & Cloud Gateways
+127.0.0.1 eligibility.apple.com
+127.0.0.1 eligibilityd.apple.com
+127.0.0.1 qwen.alicdn.com
+127.0.0.1 dashscope.aliyuncs.com
+127.0.0.1 api.vllm.ai
+127.0.0.1 yiyan.baidu.com
+127.0.0.1 bcebos.com
+127.0.0.1 hunyuan.tencent.com
+127.0.0.1 cloud.tencent.com
+127.0.0.1 doubao.com
+127.0.0.1 volces.com
+EOF'
+
+```
+
+---
+
+## 🔒 进阶底层隐私优化（永久生效）
+
+以下优化命令直接写入用户偏好配置文件，**不受系统小版本升级影响，重启依然有效**。
+
+### 1. 关闭系统诊断、分析日志与 Apple 追踪
+
+```bash
+# 禁用系统诊断与日志自动提报服务
+sudo defaults write /Library/Preferences/com.apple.SubmitDiagInfo SubmitDiagInfo -bool false
+
+# 禁用向苹果发送损毁报告与分析数据
+defaults write com.apple.CrashReporter DialogType -string "none"
+
+# 关闭系统内置广告和偏好行为追踪
+defaults write com.apple.AdLib ADMonetizationEnabled -bool false
+
+```
+
+### 2. 禁止外接设备自动挂载与锁屏安全加固
+
+```bash
+# 当 Mac 锁定或睡眠时，断开与未授权硬件的通信（防物理注入）
+sudo defaults write /Library/Preferences/com.apple.security.deviceenrollment SUBMIT_DIAGNOSTICS -bool false
+sudo defaults write /Library/Preferences/com.apple.frameworks.diskimages skip-verify -bool false
+
+# 强制锁屏后立刻（0秒）要求输入密码
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+```
+
+### 3. 防止本地共享或外接盘产生隐私痕迹 `.DS_Store`
+
+```bash
+# 禁止在网络共享盘（SMB/AFP）上自动生成 .DS_Store 文件
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# 禁止在外接设备（U盘/移动硬盘）上自动生成 .DS_Store 文件
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+```
+
+---
+
+## 🔍 自检与审计 (Audit)
+
+配置完成后，建议通过以下命令检查防护状态：
+
+1. **检查防火墙状态**：运行 `sudo pfctl -s info` 确认防火墙为 enabled。
+2. **检查域名拦截**：运行 `ping qwen.alicdn.com` 确认返回的 IP 为 `127.0.0.1`。
+3. **确认最高安全法案**：运行 `csrutil status`，**日常使用务必确保系统完整性保护 (SIP) 为 `enabled` 状态**，以防恶意组件非法提权。
+
+```
+
+```
