@@ -7,7 +7,7 @@
 If Apple refuses transparency and user choice, the community will continue to study, challenge, and ultimately dismantle these restrictions - A hardcore privacy-hardening guide for macOS 15+ / macOS 27+ (Golden Gate), designed to completely sever and block Apple Intelligence eligibility enforcement (eligibilityd), while preventing network communications, telemetry collection, behavioral tracking, and cloud interactions associated with privacy-invasive AI and cloud service providers, including Alibaba Qwen, DeepSeek, Baidu ERNIE, Tencent Hunyuan, and ByteDance Doubao.
 
 
-**[Warning] [Warning]
+**[Warning]**
 
 Privacy, security, and freedom of choice are not regional privileges. They are fundamental user rights.
 
@@ -16,7 +16,6 @@ Users in China deserve the same transparency, autonomy, and control over their d
 As long as opaque restrictions and eligibility enforcement mechanisms continue to exist, the community will continue researching, documenting, and challenging them. Technical barriers can always be studied, understood, and eventually rendered ineffective.
 
 Transparency builds trust. Restrictions invite resistance.
-**
 
 ---
 
