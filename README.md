@@ -12,9 +12,9 @@ If they won't open it, destroy it — a hardcore privacy hardening guide to comp
 
 ## ⚠️ 重要警告：小版本更新失效说明 (OTA Updates Warning)
 
-在进行系统升级或小版本更新（例如从 **macOS 27.0** 升级到 **macOS 27.1**）时，系统底层的重构机制会对本项目的防线产生不同的影响。请务必仔细阅读以下说明：
-
 ## ⚠️ Important Warning: Minor Version Update Impact (OTA Updates Warning)
+
+在进行系统升级或小版本更新（例如从 **macOS 27.0** 升级到 **macOS 27.1**）时，系统底层的重构机制会对本项目的防线产生不同的影响。请务必仔细阅读以下说明：
 
 When performing system upgrades or minor updates (for example, from **macOS 27.0** to **macOS 27.1**), low-level system refactors may affect the defenses implemented by this project in different ways. Please read the following notes carefully.
 
@@ -44,10 +44,10 @@ When performing system upgrades or minor updates (for example, from **macOS 27.0
 
 ## 🛠️ 防线构建方案（三选一）
 
+## 🛠️ Defense Construction Plans (Choose one of three)
+
 ### 方案 A：利用代理软件（Clash / Surge）实施全域拦截【最推荐・抗升级】
 将以下规则直接复制到你的 **Clash** 或 **Surge** 自定义配置文件的 `[Rule]` 或 `rules:` 最顶部。此方案在系统小版本升级后依然有效。
-
-## 🛠️ Defense Construction Plans (Choose one of three)
 
 ### Plan A: Use proxy apps (Clash / Surge) for system-wide blocking [Recommended · Upgrade-resistant]
 Copy the following rules directly to the top of your custom configuration's `[Rule]` or `rules:` in **Clash** or **Surge**. This approach remains effective after minor system updates.
