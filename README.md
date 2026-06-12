@@ -9,11 +9,9 @@ If Apple refuses transparency and user choice, the community will continue to st
 
 **[Warning]**
 
-I have already developed a more robust understanding of the Apple Intelligence eligibility enforcement mechanism.
+I have already developed a more robust understanding of the Apple Intelligence eligibility enforcement mechanism. Users in China deserve the same transparency, autonomy, and control over their devices as users anywhere else in the world.
 
-As with any closed system, increased restrictions tend to encourage further technical research and independent security analysis. The more opaque and constrained a system becomes, the more likely it is to be examined, tested, and challenged by the security research community.
-
-This project is published for research and privacy-hardening purposes. It reflects ongoing concerns regarding user autonomy, transparency, and digital rights in modern operating systems.
+Transparency builds trust. Restrictions invite resistance.
 
 ---
 
