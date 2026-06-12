@@ -2,7 +2,7 @@
 
 如果不开放，就毁灭它---一个用于在 macOS 15+ / macOS 27+ (Golden Gate) 系统中彻底切断、阻断国行特供版 Apple Intelligence 资格审查（`eligibilityd`）以及国内主流大模型/云服务（阿里通义千问、DeepSeek、百度文心一言、腾讯混元、字节豆包）底层网络连接与行为追踪的硬核隐私加固指南。
 
-**[Warning]我已经做出了升级版本不会失效，如果苹果继续无底线侵犯用户使用自由，我将不得不公开教程废除苹果资格审查**
+**[Warning]我已经做出了升级版本无需解锁任何限制且不会失效，如果苹果继续无底线侵犯用户使用自由，我将不得不公开教程废除苹果资格审查**
 
 If Apple refuses transparency and user choice, the community will continue to study, challenge, and ultimately dismantle these restrictions - A hardcore privacy-hardening guide for macOS 15+ / macOS 27+ (Golden Gate), designed to completely sever and block Apple Intelligence eligibility enforcement (eligibilityd), while preventing network communications, telemetry collection, behavioral tracking, and cloud interactions associated with privacy-invasive AI and cloud service providers, including Alibaba Qwen, DeepSeek, Baidu ERNIE, Tencent Hunyuan, and ByteDance Doubao.
 
