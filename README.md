@@ -10,6 +10,32 @@ If they won't open it, destroy it — a hardcore privacy hardening guide to comp
 
 ---
 
+##背景说明
+
+在测试过程中，我尝试调整系统安全配置（CSR/SIP）时遇到如下错误：
+
+"Failed to update security configuration for 'Macintosh HD': Manifest verification failed"
+
+查阅社区讨论后发现，部分 Apple Silicon（M 系列）设备用户即使降低安全级别，仍然无法完成相关配置修改，最终只能通过 DFU 模式连接另一台正常运行的 Mac 进行完整恢复。该现象似乎并非个例。
+
+值得注意的是，Apple 近期也在 iPhone 上引入了更便捷的恢复机制（例如通过硬件按键进入恢复流程）。因此我推测，Apple 可能有意让 Beta 测试用户更多地接触和验证系统恢复、刷机及设备救援流程。不过这只是个人猜测，并无直接证据支持。
+
+目前 Apple Intelligence 相关组件已经出现在系统 CLI 工具中（例如 fm --help 可见相关功能入口），但实际调用时仍会受到资格审查机制限制。
+
+##Background
+
+During testing, I encountered the following error while attempting to modify system security settings (CSR/SIP):
+
+"Failed to update security configuration for 'Macintosh HD': Manifest verification failed"
+
+After reviewing community reports, I found that some Apple Silicon (M-series) users experience the same issue. In certain cases, lowering the security level does not resolve the problem, and the only available recovery path is restoring the device through DFU mode using another functioning Mac. This does not appear to be an isolated incident.
+
+It is also noteworthy that Apple has recently introduced more accessible recovery workflows on iPhone devices. As a result, I speculate that Apple may be encouraging Beta users to exercise and validate recovery, restore, and device rescue procedures more frequently. This is only a personal hypothesis and is not supported by direct evidence.
+
+At present, Apple Intelligence-related components are already visible within system CLI tools (for example, references can be observed via "fm --help"), yet actual functionality remains restricted by eligibility enforcement mechanisms.
+
+---
+
 ## ⚠️ 重要警告：小版本更新失效说明 (OTA Updates Warning)
 
 在进行系统升级或小版本更新（例如从 **macOS 27.0** 升级到 **macOS 27.1**）时，系统底层的重构机制会对本项目的防线产生不同的影响。请务必仔细阅读以下说明：
