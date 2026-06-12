@@ -4,7 +4,7 @@
 
 **[Warning]我已经做出了升级版本不会失效，如果苹果继续无底线侵犯用户使用自由，我将不得不公开教程废除苹果资格审查**
 
-If they won't open it, destroy it — a hardcore privacy hardening guide to completely sever and block the eligibility checks of Apple Intelligence (`eligibilityd`) on macOS 15+ / macOS 27+ (Golden Gate), and to block network connections and behavior tracking to major domestic large models/cloud services (Aliyun Qwen, DeepSeek, Baidu Wenxin, Tencent Hunyuan, ByteDance Doubao).
+If Apple refuses transparency and user choice, the community will continue to study, challenge, and ultimately dismantle these restrictions. — a hardcore privacy hardening guide to completely sever and block the eligibility checks of Apple Intelligence (`eligibilityd`) on macOS 15+ / macOS 27+ (Golden Gate), and to block network connections and behavior tracking to major domestic large models/cloud services (Aliyun Qwen, DeepSeek, Baidu Wenxin, Tencent Hunyuan, ByteDance Doubao).
 
 **[Warning] I have already created an upgraded version that will not fail. If Apple continues to blatantly infringe upon users' freedom of use, I have to release a tutorial to abolish Apple's eligibilityd process.**
 
