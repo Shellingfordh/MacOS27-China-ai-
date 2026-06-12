@@ -28,7 +28,7 @@ During testing, I encountered the following error while attempting to modify sys
 
 "Failed to update security configuration for 'Macintosh HD': Manifest verification failed"
 
-After reviewing community reports, I found that some Apple Silicon (M-series) users experience the same issue. In certain cases, lowering the security level does not resolve the problem, and the only available recovery path couldbe trying is restoring the device through DFU mode using another functioning Mac. This does not appear to be an isolated incident.
+After reviewing community reports, I found that some Apple Silicon (M-series) users experience the same issue. In certain cases, lowering the security level does not resolve the problem, and the only available recovery path could be trying is restoring the device through DFU mode using another functioning Mac. This does not appear to be an isolated incident.
 
 It is also noteworthy that Apple has recently introduced more accessible recovery workflows on iPhone devices. As a result, I speculate that Apple may be encouraging Beta users to exercise and validate recovery, restore, and device rescue procedures more frequently. This is only a personal hypothesis and is not supported by direct evidence.
 
