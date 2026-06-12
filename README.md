@@ -10,7 +10,7 @@ If they won't open it, destroy it — a hardcore privacy hardening guide to comp
 
 ---
 
-##背景说明
+## 背景说明
 
 在测试过程中，我尝试调整系统安全配置（CSR/SIP）时遇到如下错误：
 
@@ -22,7 +22,7 @@ If they won't open it, destroy it — a hardcore privacy hardening guide to comp
 
 目前 Apple Intelligence 相关组件已经出现在系统 CLI 工具中（例如 fm --help 可见相关功能入口），但实际调用时仍会受到资格审查机制限制。
 
-##Background
+## Background
 
 During testing, I encountered the following error while attempting to modify system security settings (CSR/SIP):
 
