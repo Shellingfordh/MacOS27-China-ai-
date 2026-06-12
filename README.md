@@ -12,9 +12,9 @@ If they won't open it, destroy it — a hardcore privacy hardening guide to comp
 
 ## ⚠️ 重要警告：小版本更新失效说明 (OTA Updates Warning)
 
-## ⚠️ Important Warning: Minor Version Update Impact (OTA Updates Warning)
-
 在进行系统升级或小版本更新（例如从 **macOS 27.0** 升级到 **macOS 27.1**）时，系统底层的重构机制会对本项目的防线产生不同的影响。请务必仔细阅读以下说明：
+
+## ⚠️ Important Warning: Minor Version Update Impact (OTA Updates Warning)
 
 When performing system upgrades or minor updates (for example, from **macOS 27.0** to **macOS 27.1**), low-level system refactors may affect the defenses implemented by this project in different ways. Please read the following notes carefully.
 
